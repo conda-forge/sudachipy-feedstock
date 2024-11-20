@@ -1,13 +1,13 @@
 {% set name = "sudachipy" %}
-{% set version = "0.6.8" %}
+{% set version = "0.6.9" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/SudachiPy-{{ version }}.tar.gz
-  sha256: 3d1c9086ff09afacc34d02fdb2112aab7cff1d78f0d4b81f78b9ba01c36d4888
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: 131fc9521f2d538be9d5f276e69efc64a2b38dd6489af5dfe1e7161c3efaebb6
 
 build:
   entry_points:
