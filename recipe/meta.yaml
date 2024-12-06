@@ -13,6 +13,11 @@ build:
   entry_points:
     - sudachipy=sudachipy.command_line:main
   script:
+    {% if build_platform != target_platform %}
+    - export PYO3_CROSS_INCLUDE_DIR=$PREFIX/include
+    - export PYO3_CROSS_LIB_DIR=$PREFIX/lib
+    - export PYO3_CROSS_PYTHON_VERSION=$PY_VER
+    {% endif %}
     - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
     - {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 0
