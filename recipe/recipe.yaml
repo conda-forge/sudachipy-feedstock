@@ -42,12 +42,7 @@ tests:
       imports:
         - sudachipy
       pip_check: true
-  - requirements:
-      run:
-        - pip
-        - python
-    script:
-      - sudachipy --help
+  - script: sudachipy --help
 
 about:
   summary: Python version of Sudachi, the Japanese Morphological Analyzer
