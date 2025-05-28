@@ -41,12 +41,12 @@ tests:
   - python:
       imports:
         - sudachipy
+      pip_check: true
   - requirements:
       run:
         - pip
         - python
     script:
-      - pip check
       - sudachipy --help
 
 about:
