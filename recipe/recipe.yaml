@@ -1,0 +1,58 @@
+context:
+  version: 0.6.10
+
+package:
+  name: sudachipy
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/s/sudachipy/sudachipy-${{ version }}.tar.gz
+  sha256: b8910a4610de98b2c3cb6dc3362fea93e3ba5059f1eb445a68baa9585278f31b
+
+build:
+  number: 1
+  script:
+    - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
+    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  python:
+    entry_points:
+      - sudachipy=sudachipy.command_line:main
+
+requirements:
+  build:
+    - ${{ stdlib("c") }}
+    - ${{ compiler("c") }}
+    - ${{ compiler("rust") }}
+    - cargo-bundle-licenses
+    - if: build_platform != target_platform
+      then: 
+        - python
+        - cross-python_${{ target_platform }}
+  host:
+    - python
+    - setuptools
+    - wheel
+    - setuptools-rust
+    - pip
+  run:
+    - python
+
+tests:
+  - python:
+      imports:
+        - sudachipy
+      pip_check: true
+  - script: sudachipy --help
+
+about:
+  summary: Python version of Sudachi, the Japanese Morphological Analyzer
+  license: Apache-2.0
+  license_file:
+    - LICENSE
+    - THIRDPARTY.yml
+  homepage: https://github.com/WorksApplications/sudachi.rs/tree/develop/python
+
+extra:
+  recipe-maintainers:
+    - apmorton
+    - danielnachun
