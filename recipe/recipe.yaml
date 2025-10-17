@@ -10,8 +10,14 @@ source:
   sha256: b8910a4610de98b2c3cb6dc3362fea93e3ba5059f1eb445a68baa9585278f31b
 
 build:
-  number: 1
+  number: 2
   script:
+    - if: match(python, "3.14.*") and unix
+      then:
+        - export PYO3_USE_ABI3_FORWARD_COMPATIBILITY=1
+    - if: match(python, "3.14.*") and win
+      then:
+        - set PYO3_USE_ABI3_FORWARD_COMPATIBILITY=1
     - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
     - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   python:
