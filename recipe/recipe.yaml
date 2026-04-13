@@ -1,5 +1,5 @@
 context:
-  version: 0.6.10
+  version: "0.6.11"
 
 package:
   name: sudachipy
@@ -7,10 +7,10 @@ package:
 
 source:
   url: https://pypi.org/packages/source/s/sudachipy/sudachipy-${{ version }}.tar.gz
-  sha256: b8910a4610de98b2c3cb6dc3362fea93e3ba5059f1eb445a68baa9585278f31b
+  sha256: 4f03310fd3fc779b3000f49395c939d18a30081632d3cb14488426f7c07cc526
 
 build:
-  number: 2
+  number: 0
   script:
     - if: match(python, "3.14.*") and unix
       then:
@@ -31,7 +31,7 @@ requirements:
     - ${{ compiler("rust") }}
     - cargo-bundle-licenses
     - if: build_platform != target_platform
-      then: 
+      then:
         - python
         - cross-python_${{ target_platform }}
   host:
