@@ -10,7 +10,7 @@ source:
   sha256: 4f03310fd3fc779b3000f49395c939d18a30081632d3cb14488426f7c07cc526
 
 build:
-  number: 0
+  number: 1
   script:
     - if: match(python, "3.14.*") and unix
       then:
